@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  # ─── RMI Server (Java — run manually or as a pre-built JAR) ───
+  # Note: The RMI server is a plain Java app. Start it manually first:
+  #   cd rmi-server && javac *.java && java RmiServer
+  # OR add it here once you have a Dockerfile for it.
+
+  # ─── Spring Boot REST API ─────────────────────────────────────
+  rest-api:
+    build:
+      context: ./rest-api
+      dockerfile: Dockerfile
+    container_name: worker-finder-api
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    # Uncomment below once rmi-server has a container:
+    # depends_on:
+    #   - rmi-server
+    restart: unless-stopped
+
+  # ─── React Frontend (served via nginx) ────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    container_name: worker-finder-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - rest-api
+    restart: unless-stopped
