@@ -1,4 +1,4 @@
-package com.workerfinder.restapi;
+package com.workerfinder.rest_api;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
