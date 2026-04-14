@@ -1,4 +1,4 @@
-package com.workerfinder.restapi;
+package com.workerfinder.rest_api;
 
 import com.workerfinder.restapi.model.Worker;
 import com.workerfinder.restapi.model.Job;
