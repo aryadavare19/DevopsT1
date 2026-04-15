@@ -12,6 +12,7 @@ import java.util.*;
 @CrossOrigin(origins = "*")
 @RequestMapping("/api")
 public class JobController {
+    
 
     @Autowired
     private WorkerServiceImpl service;
