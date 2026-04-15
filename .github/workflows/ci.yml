@@ -121,5 +121,14 @@ jobs:
     steps:
       - name: Trigger Render Deploy Hook
         run: |
-          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
-          echo "Deployment triggered on Render"
+          if [ -z "${{ secrets.RENDER_DEPLOY_HOOK_URL }}" ]; then
+            echo "⚠️  RENDER_DEPLOY_HOOK_URL secret not set — skipping"
+            exit 0
+          fi
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}")
+          echo "Render responded with HTTP $RESPONSE"
+          if [ "$RESPONSE" != "200" ] && [ "$RESPONSE" != "201" ]; then
+            echo "❌ Deploy hook failed with status $RESPONSE"
+            exit 1
+          fi
+          echo "✅ Deployment triggered on Render"
