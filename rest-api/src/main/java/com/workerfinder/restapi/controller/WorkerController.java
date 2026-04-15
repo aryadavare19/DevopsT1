@@ -12,11 +12,11 @@ import java.util.*;
 @RequestMapping("/api")
 public class WorkerController {
 
-    private final WorkerService rmi;
-
-    public WorkerController() throws Exception {
+    // No constructor-time RMI connection — look up lazily per request
+    // so Spring Boot can start even if the RMI server isn't ready yet.
+    private WorkerService getRMI() throws Exception {
         Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-        this.rmi = (WorkerService) registry.lookup("WorkerService");
+        return (WorkerService) registry.lookup("WorkerService");
     }
 
     // GET /api/workers?skill=plumber&area=Pune
@@ -25,7 +25,7 @@ public class WorkerController {
             @RequestParam(required = false) String skill,
             @RequestParam(required = false) String area) {
         try {
-            return rmi.getWorkersBySkillAndArea(skill, area);  // ← was getRMI().
+            return getRMI().getWorkersBySkillAndArea(skill, area);
         } catch (Exception e) {
             e.printStackTrace();
             return Collections.emptyList();
@@ -36,7 +36,7 @@ public class WorkerController {
     @GetMapping("/workers/all")
     public List<Worker> getAllWorkers() {
         try {
-            return rmi.getAllWorkers();  // ← was getRMI().
+            return getRMI().getAllWorkers();
         } catch (Exception e) {
             return Collections.emptyList();
         }
