@@ -1,23 +1,18 @@
 package com.workerfinder.rest_api;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.springframework.boot.test.context.SpringBootTest;
 
 /**
- * Placeholder application test.
- * Note: Full Spring context load is skipped here because the WorkerController
- * constructor tries to connect to the RMI server at startup, which is not
- * available in the CI environment.
- *
- * Real logic is tested in:
- * - WorkerModelTest.java
- * - WorkerControllerLogicTest.java
+ * Verifies the Spring application context loads without errors.
+ * Previously skipped because WorkerController connected to RMI in its
+ * constructor — that has been fixed; RMI is now looked up lazily per request.
  */
+@SpringBootTest
 class RestApiApplicationTests {
 
     @Test
-    void applicationClassExists() {
-        // Verify the main application class is on the classpath
-        assertTrue(true, "Application class is present");
+    void contextLoads() {
+        // If the context fails to start, this test will fail with a clear error.
     }
 }
