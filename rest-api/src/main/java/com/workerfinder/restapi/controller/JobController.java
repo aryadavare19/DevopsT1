@@ -1,4 +1,5 @@
 package com.workerfinder.restapi.controller;
+
 import com.workerfinder.restapi.model.Booking;
 import com.workerfinder.restapi.model.Job;
 import com.workerfinder.restapi.service.WorkerService;
@@ -12,9 +13,15 @@ import java.util.*;
 @RequestMapping("/api")
 public class JobController {
 
+    private WorkerService rmi;
+
+    // Cached RMI connection — only reconnects if the connection is lost
     private WorkerService getRMI() throws Exception {
-        Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-        return (WorkerService) registry.lookup("WorkerService");
+        if (rmi == null) {
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            rmi = (WorkerService) registry.lookup("WorkerService");
+        }
+        return rmi;
     }
 
     // POST /api/jobs
@@ -26,6 +33,7 @@ public class JobController {
                     body.get("area"),       body.get("description")
             );
         } catch (Exception e) {
+            rmi = null; // reset cache so next request tries to reconnect
             throw new RuntimeException("Failed to post job: " + e.getMessage());
         }
     }
@@ -36,6 +44,7 @@ public class JobController {
         try {
             return getRMI().getOpenJobs();
         } catch (Exception e) {
+            rmi = null;
             return Collections.emptyList();
         }
     }
@@ -49,6 +58,7 @@ public class JobController {
                     body.get("customerId"), body.get("date")
             );
         } catch (Exception e) {
+            rmi = null;
             throw new RuntimeException("Failed to assign: " + e.getMessage());
         }
     }
@@ -62,6 +72,7 @@ public class JobController {
             res.put("success", ok);
             res.put("message", ok ? "Job completed" : "Not found");
         } catch (Exception e) {
+            rmi = null;
             res.put("success", false);
             res.put("message", e.getMessage());
         }
@@ -80,6 +91,7 @@ public class JobController {
             res.put("success", true);
             res.put("newRating", rating);
         } catch (Exception e) {
+            rmi = null;
             res.put("success", false);
             res.put("message", e.getMessage());
         }
@@ -92,6 +104,7 @@ public class JobController {
         try {
             return getRMI().getBookingsForCustomer(customerId);
         } catch (Exception e) {
+            rmi = null;
             return Collections.emptyList();
         }
     }
@@ -102,6 +115,7 @@ public class JobController {
         try {
             return getRMI().getBookingsForWorker(workerId);
         } catch (Exception e) {
+            rmi = null;
             return Collections.emptyList();
         }
     }
