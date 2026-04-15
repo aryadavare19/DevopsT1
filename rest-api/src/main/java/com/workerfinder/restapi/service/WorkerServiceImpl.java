@@ -13,9 +13,28 @@ public class WorkerServiceImpl {
     private List<Worker> workers = new ArrayList<>();
 
     public WorkerServiceImpl() {
-        workers.add(new Worker("W001", "Ramesh", "plumber", "Pune", true, 4.5, "9999999999"));
-        workers.add(new Worker("W002", "Suresh", "electrician", "Mumbai", true, 4.2, "8888888888"));
-    }
+
+    Worker w1 = new Worker();
+    w1.setId("W001");
+    w1.setName("Ramesh");
+    w1.setSkill("plumber");
+    w1.setArea("Pune");
+    w1.setAvailable(true);
+    w1.setRating(4.5);
+    w1.setPhone("9999999999");
+
+    Worker w2 = new Worker();
+    w2.setId("W002");
+    w2.setName("Suresh");
+    w2.setSkill("electrician");
+    w2.setArea("Mumbai");
+    w2.setAvailable(true);
+    w2.setRating(4.2);
+    w2.setPhone("8888888888");
+
+    workers.add(w1);
+    workers.add(w2);
+}
 
     public List<Worker> getAllWorkers() {
         return workers;
