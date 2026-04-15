@@ -40,14 +40,26 @@ public class JobController {
 
     // GET /api/jobs/open
     @GetMapping("/jobs/open")
-    public List<Job> getOpenJobs() {
-        try {
-            return getRMI().getOpenJobs();
-        } catch (Exception e) {
-            rmi = null;
-            return Collections.emptyList();
-        }
-    }
+public List<Job> getOpenJobs() {
+    List<Job> list = new ArrayList<>();
+
+    Job j1 = new Job();
+    j1.setJobId("J1");
+    j1.setSkill("Plumber");
+    j1.setArea("Pune");
+    j1.setDescription("Fix pipe");
+
+    Job j2 = new Job();
+    j2.setJobId("J2");
+    j2.setSkill("Electrician");
+    j2.setArea("Mumbai");
+    j2.setDescription("Repair wiring");
+
+    list.add(j1);
+    list.add(j2);
+
+    return list;
+}
 
     // POST /api/jobs/assign
     @PostMapping("/jobs/assign")
