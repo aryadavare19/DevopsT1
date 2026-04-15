@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-const API = "http://localhost:8081/api";
+const API = "https://devopst1.onrender.com/api";
 
 const SKILLS = ["plumber", "electrician", "carpenter", "painter"];
 const AREAS  = ["Pune", "Mumbai"];
