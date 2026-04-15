@@ -20,12 +20,21 @@ const SKILL_ICON = {
 };
 
 async function api(path, opts = {}) {
-  const res = await fetch(API + path, {
-    headers: { "Content-Type": "application/json" },
-    ...opts,
-  });
-  if (!res.ok) throw new Error(await res.text());
-  return res.json();
+  try {
+    const res = await fetch(API + path, {
+      headers: { "Content-Type": "application/json" },
+      ...opts,
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "Server error");
+    }
+
+    return res.json();
+  } catch (e) {
+    throw new Error("Server waking up... try again in 5 seconds");
+  }
 }
 
 /* ── Primitives ─────────────────────────────────────────────── */
@@ -47,7 +56,7 @@ const Stars = ({ value }) => (
     {[1,2,3,4,5].map(i => (
       <span key={i} style={{ color: i <= Math.round(value) ? "#f59e0b" : "#d1d5db" }}>★</span>
     ))}
-    <span style={{ color: "#9ca3af", fontSize: 12, marginLeft: 4 }}>{value?.toFixed(1)}</span>
+    <span style={{ color: "#9ca3af", fontSize: 12, marginLeft: 4 }}>{value ? value.toFixed(1) : "0.0"}</span>
   </span>
 );
 
