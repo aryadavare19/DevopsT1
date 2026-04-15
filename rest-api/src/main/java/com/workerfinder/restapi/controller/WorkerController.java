@@ -20,6 +20,7 @@ public class WorkerController {
     public List<Worker> searchWorkers(
             @RequestParam(required = false) String skill,
             @RequestParam(required = false) String area) {
+        
 
         return service.findWorkers(skill, area);
     }
