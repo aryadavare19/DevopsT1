@@ -32,8 +32,61 @@ public class WorkerServiceImpl {
     w2.setRating(4.2);
     w2.setPhone("8888888888");
 
+    Worker w3= new Worker();
+    w3.setId("W004");
+    w3.setName("Riya");
+    w3.setSkill("carpenter");
+    w3.setArea("Pune");
+    w3.setAvailable(true);
+    w3.setRating(4.8);
+    w3.setPhone("7788899977");
+    
+    Worker w4 = new Worker();
+    w4.setId("W005");
+    w4.setName("Vikram");
+    w4.setSkill("painter");
+    w4.setArea("Mumbai");
+    w4.setAvailable(true);
+    w4.setRating(4.3);
+    w4.setPhone("6666666666");
+    
+    Worker w5 = new Worker();
+    w5.setId("W006");
+    w5.setName("Anil");
+    w5.setSkill("electrician");
+    w5.setArea("Nashik");
+    w5.setAvailable(true);
+    w5.setRating(4.6);
+    w5.setPhone("5555555555");
+    
+    Worker w6 = new Worker();
+    w6.setId("W007");
+    w6.setName("Deepak");
+    w6.setSkill("plumber");
+    w6.setArea("Nashik");
+    w6.setAvailable(true);
+    w6.setRating(4.4);
+    w6.setPhone("4444444444");
+
+    Worker w7 = new Worker();
+    w7.setId("W003");
+    w7.setName("Priya");
+    w7.setSkill("carpenter");
+    w7.setArea("Pune");
+    w7.setAvailable(true);
+    w7.setRating(4.8);
+    w7.setPhone("7777777777");
+
+
+
     workers.add(w1);
     workers.add(w2);
+    workers.add(w3);
+    workers.add(w4);
+    workers.add(w5);
+    workers.add(w6);
+    workers.add(w7);
+
 }
 
     public List<Worker> getAllWorkers() {
