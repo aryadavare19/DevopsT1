@@ -140,7 +140,9 @@ Configure these in your repository under **Settings → Secrets and Variables �
 ---
 
 ## 🚀 Live Deployment
-https://devopst1-frontend.onrender.com/
+Frontend:https://devopst1-frontend.onrender.com/
+
+Backend API: https://devopst1.onrender.com/api
 > Deployed manually on **Render** (Web Service)
 
 ## 🏃 Running Locally
