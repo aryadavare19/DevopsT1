@@ -536,7 +536,7 @@ export default function App() {
             <div style={{ fontSize: 20, fontWeight: 800, color: "#4f46e5", letterSpacing: "-.03em" }}>
               Worker<span style={{ color: "#111827" }}>Finder</span>
             </div>
-            <div style={{ fontSize: 11, color: "#9ca3af", marginTop: 3, fontWeight: 500 }}>Pune · Mumbai</div>
+            <div style={{ fontSize: 11, color: "#9ca3af", marginTop: 3, fontWeight: 500 }}> City </div>
           </div>
 
           {/* Nav */}
