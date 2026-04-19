@@ -139,6 +139,12 @@ Configure these in your repository under **Settings → Secrets and Variables �
 
 ---
 
+## 🚀 Live Deployment
+
+https://your-frontend-url.onrender.com  
+
+> Deployed manually on **Render** (Web Service)
+
 ## 🏃 Running Locally
 
 ### Backend
