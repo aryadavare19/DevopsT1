@@ -11,9 +11,9 @@ import java.util.ArrayList;
 /**
  * Unit tests for controller-level logic.
  * Tests use plain Java — no Spring context, no RMI connection needed.
- * This verifies filtering and response-building logic extracted from controllers.
- *
- * Person 2 owns this file.
+
+ 
+
  */
 class WorkerControllerLogicTest {
 
