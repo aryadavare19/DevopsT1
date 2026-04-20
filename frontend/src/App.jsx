@@ -4,7 +4,7 @@ const API = "https://devopst1.onrender.com/api";
 
 const SKILLS = ["plumber", "electrician", "carpenter", "painter"];
 
-const AREAS  = ["Pune", "Mumbai", "Nashik"];
+const AREAS  = ["Pune", "Mumbai", "Nashik","Kolhapur"];
 
 const STATUS_META = {
   OPEN:      { color: "#d97706", bg: "#fef3c7" },
